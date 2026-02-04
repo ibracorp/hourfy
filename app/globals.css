@@ -9,12 +9,17 @@
 body {
   @apply bg-background text-foreground antialiased;
   font-feature-settings: "rlig" 1, "calt" 1;
+  background-image: radial-gradient(circle at top, rgba(96, 165, 250, 0.12), transparent 55%),
+    radial-gradient(circle at 20% 20%, rgba(192, 132, 252, 0.08), transparent 40%);
+  background-attachment: fixed;
 }
 
 .glass-panel {
-  background: radial-gradient(circle at top, rgba(96, 165, 250, 0.12), transparent 60%),
-    rgba(15, 23, 42, 0.9);
-  border: 1px solid rgba(148, 163, 184, 0.15);
+  background:
+    linear-gradient(140deg, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.75)),
+    radial-gradient(circle at top, rgba(96, 165, 250, 0.18), transparent 60%);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  box-shadow: 0 20px 50px rgba(2, 6, 23, 0.45);
 }
 
 .gradient-text {
