@@ -3,6 +3,7 @@ import {
   calculateWorkTime,
   computeHourlyRate,
   DEFAULT_HOURS_PER_DAY,
+  formatHoursMinutes,
 } from "@/lib/calculations";
 
 describe("computeHourlyRate", () => {
@@ -54,5 +55,12 @@ describe("calculateWorkTime", () => {
 
     expect(result.hoursRequired).toBe(0);
     expect(result.minutesRequired).toBe(0);
+  });
+});
+
+describe("formatHoursMinutes", () => {
+  it("splits minutes into hours and remainder", () => {
+    const result = formatHoursMinutes(125);
+    expect(result).toEqual({ hours: 2, minutes: 5 });
   });
 });
