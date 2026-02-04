@@ -47,6 +47,16 @@ The app is intentionally lightweight — no database, no auth, no backend servic
 
 ---
 
+## ⚡ Build & Run (Docker)
+
+```bash
+docker compose up -d --build
+docker compose logs -f
+curl -I http://localhost:3000
+```
+
+---
+
 ## 🚀 Running Locally (Docker)
 
 ```bash
