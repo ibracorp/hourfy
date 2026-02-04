@@ -1,6 +1,7 @@
 import * as React from "react";
 
 export function useLocalStorage<T>(key: string, initialValue: T) {
+  const initialRef = React.useRef(initialValue);
   const [value, setValue] = React.useState<T>(initialValue);
   const [hydrated, setHydrated] = React.useState(false);
 
@@ -11,11 +12,14 @@ export function useLocalStorage<T>(key: string, initialValue: T) {
       try {
         setValue(JSON.parse(stored) as T);
       } catch {
-        setValue(initialValue);
+        setValue(initialRef.current);
       }
     }
+    if (!stored) {
+      setValue(initialRef.current);
+    }
     setHydrated(true);
-  }, [key, initialValue]);
+  }, [key]);
 
   React.useEffect(() => {
     if (!hydrated) return;

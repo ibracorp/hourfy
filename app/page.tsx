@@ -41,35 +41,38 @@ const defaultValues: FormValues = {
 };
 
 export default function HomePage() {
-  const storage = useLocalStorage<FormValues>("hourfy-settings", defaultValues);
+  const { value: storedValues, setValue: setStoredValues, hydrated } =
+    useLocalStorage<FormValues>("hourfy-settings", defaultValues);
   const {
     register,
     watch,
     setValue,
+    reset,
     formState: { errors },
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: storage.value,
+    defaultValues,
     mode: "onChange",
   });
 
   const values = watch();
+  const didHydrateRef = React.useRef(false);
 
   React.useEffect(() => {
-    if (storage.hydrated) {
-      Object.entries(storage.value).forEach(([key, value]) => {
-        setValue(key as keyof FormValues, value as never, {
-          shouldValidate: true,
-          shouldDirty: false,
-        });
-      });
-    }
-  }, [setValue, storage.hydrated, storage.value]);
+    if (!hydrated || didHydrateRef.current) return;
+    reset(storedValues, {
+      keepDirty: false,
+      keepErrors: true,
+      keepTouched: false,
+    });
+    didHydrateRef.current = true;
+  }, [hydrated, reset, storedValues]);
 
   React.useEffect(() => {
-    if (!storage.hydrated) return;
-    storage.setValue(values);
-  }, [storage, values]);
+    if (!hydrated || !didHydrateRef.current) return;
+    if (JSON.stringify(values) === JSON.stringify(storedValues)) return;
+    setStoredValues(values);
+  }, [hydrated, setStoredValues, storedValues, values]);
 
   const calculation = calculateWorkTime(values);
   const time = formatHoursMinutes(calculation.minutesRequired);
