@@ -54,5 +54,52 @@ git clone https://github.com/ibracorp/hourfy.git
 cd hourfy
 docker compose up -d --build
 ```
+The app will be available on:
+```http://localhost:3000```
 
-AI Disclaimer: AI was used in the development of this application. However, no information is stored or collected by this application. Please use at your own discretion.
+---
+
+## 🌐 Deployment
+
+Hourfy is designed to run cleanly in Docker and sit behind a reverse proxy  
+(e.g. Nginx Proxy Manager, Traefik, Cloudflare Tunnel).
+
+- Exposes port **3000**
+- No process managers (PM2/systemd) required
+- Safe to restart, reboot, or redeploy
+
+---
+
+## 📦 Project Status
+
+Hourfy is currently in **active development**.
+
+Planned improvements may include:
+
+- Shareable result cards
+- Presets for common income types
+- Historical comparisons
+- Optional accounts (future)
+
+---
+
+## 🧾 License
+
+MIT License.
+
+Use it, fork it, improve it — just don’t make it worse 😉
+
+---
+
+## 👋 Author
+
+Built by **IBRACORP**  
+Focused on practical tools, clean infrastructure, and intentional tech.
+
+---
+
+## 🤖 AI Disclaimer
+
+AI was used in the development of this application.  
+No user information is stored or collected.  
+Please use at your own discretion.
