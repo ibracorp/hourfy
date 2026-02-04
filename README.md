@@ -53,3 +53,6 @@ The app is intentionally lightweight — no database, no auth, no backend servic
 git clone https://github.com/ibracorp/hourfy.git
 cd hourfy
 docker compose up -d --build
+```
+
+AI Disclaimer: AI was used in the development of this application. However, no information is stored or collected by this application. Please use at your own discretion.
